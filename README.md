@@ -12,7 +12,7 @@
         <img src="https://img.shields.io/badge/okhttp--sse-3.14.9-orange" ></img>
 
 
-**Chatgpt微信小程序端已经上线了!小程序搜索【<span style="color:#04BE02">微 AI 聊天</span>】，认准这个logo图标就可以了，欢迎体验~**
+**Chatgpt微信小程序端已经上线了!小程序搜索【<font color=#04BE02>微 AI 聊天</font>】，认准这个logo图标就可以了，欢迎体验~**
 
 ## 项目介绍
 
