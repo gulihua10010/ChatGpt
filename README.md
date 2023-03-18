@@ -11,9 +11,9 @@
         <img src="https://img.shields.io/badge/hutools--all-5.4.3-brightgreen" ></img>
         <img src="https://img.shields.io/badge/okhttp--sse-3.14.9-orange" ></img>
 
+</p>
 
-**Chatgpt微信小程序端已经上线了!小程序搜索【<font color=#04BE02>微 AI 聊天</font>】，认准这个logo图标就可以了，欢迎体验~**
-
+**Chatgpt微信小程序端已经上线了!小程序搜索【$${\color{#04BE02}微AI聊天}$$】，认准这个logo图标就可以了，欢迎体验~**
 ## 项目介绍
 
 本项目基于ChatGPT开发的一个命令行客户端，支持连续对话！
