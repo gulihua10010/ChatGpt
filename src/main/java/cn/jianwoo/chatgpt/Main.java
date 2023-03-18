@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.setting.dialect.Props;
 import cn.jianwoo.openai.chatgptapi.auth.OpenAiAuth;
 import cn.jianwoo.openai.chatgptapi.bo.CompletionReq;
 import cn.jianwoo.openai.chatgptapi.bo.MessageReq;
@@ -32,23 +33,31 @@ import cn.jianwoo.openai.chatgptapi.service.impl.ChatGptApiPost;
  */
 public class Main
 {
+    private static final String LANG_EN = "en";
+    private static final String LANG_ZH_CN = "zh_cn";
+    private static Props props = new Props("i18n/zh_cn.properties");
+
     public static void main(String[] args)
     {
         ArgsBO bo = parseAgrs(args);
-//        System.out.println(bo);
-        System.out.format("\33[32;6mChatGPT - 一个用命令行进行AI聊天的小工具~\33[0m%n");
-        System.out.format("\33[32;6m用法: java -jar chatGpt.jar -api=<API_KEY> -context=false -proxy=<PROXY>\33[0m%n");
-        System.out.format("\33[32;6m说明: api-----------你的 API Key(必填)\33[0m%n");
-        System.out.format(
-                "\33[32;6m     context-------是否记住上下文(可选,默认否),如果为true,需要把之前所有的对话都作为请求体进行发送,这样token消耗就会很快!\33[0m%n");
-        System.out.format("\33[32;6m     proxy---------代理(可选)\33[0m%n");
-        System.out.format("\33[32;6mGithub: https://github.com/gulihua10010/ChatGpt~\33[0m%n");
-        System.out.format("\33[32;6m博客 'https://jianwoo.cn\33[0m%n");
-        System.out.format("\33[32;6m请按两次回车进行绘画请求\33[0m%n");
-        System.out.format("\33[32;6m输入exit退出会话\33[0m%n");
+        System.out.println(bo);
+        if (LANG_EN.equals(bo.getLang()))
+        {
+            props = new Props("i18n/en.properties");
+        }
+        printTitle(props.getProperty("TIPS1"));
+        print(props.getProperty("TIPS2"));
+        print(props.getProperty("TIPS3"));
+        print(props.getProperty("TIPS3_1"));
+        print(props.getProperty("TIPS3_2"));
+        print(props.getProperty("TIPS3_3"));
+        print(props.getProperty("TIPS6"));
+        print(props.getProperty("TIPS7"));
+        print(props.getProperty("TIPS8"));
+        print(props.getProperty("TIPS9"));
         if (StrUtil.isBlank(bo.getApiKey()))
         {
-            System.out.format("\33[31;6m参数api不能为空!\33[0m%n");
+            printErr(props.getProperty("ERR1"));
             System.exit(1);
         }
 
@@ -62,7 +71,8 @@ public class Main
             }
             PostApiService service = new ChatGptApiPost(new OpenAiAuth(bo.getApiKey(), proxy));
             System.out.println();
-            System.out.println("验证中...");
+            print(props.getProperty("TIPS10"));
+
             try
             {
                 service.models();
@@ -71,8 +81,7 @@ public class Main
             {
                 if ("400001".equals(e.getCode()))
                 {
-                    System.out.format(
-                            "\33[31;6mAPI Key 错误! 请到 https://platform.openai.com/account/api-keys 检查您的API Key是否有效!\33[0m%n");
+                    printErr(props.getProperty("ERR2"));
                     System.exit(1);
                 }
                 else
@@ -80,27 +89,27 @@ public class Main
                     throw e;
                 }
             }
-            System.out.println("API Key验证成功!");
+            print(props.getProperty("TIPS11"));
             List<MessageReq> messages = new ArrayList<>();
             String prompt = "";
             while (true)
             {
-                prompt = getInput("\n你:");
+                prompt = getInput(props.getProperty("TIPS12"));
                 if (StrUtil.isBlank(prompt))
                 {
-                    System.out.format("\33[31;6m请输入问题或消息哦~\33[0m%n");
+                    printErr(props.getProperty("ERR3"));
                     continue;
 
                 }
                 if ("exit".equals(prompt))
                 {
-                    System.out.format("\33[32;6m退出成功~\33[0m%n");
+                    print(props.getProperty("TIPS13"));
                     System.exit(0);
                 }
                 CompletionReq req = CompletionReq.builder().model(Model.GPT_35_TURBO.getName()).build();
                 messages.add(MessageReq.builder().role(Role.USER.getName()).content(prompt).build());
                 req.setMessages(messages);
-                System.out.format("\33[35;6mChatGpt:\33[0m%n");
+                print(props.getProperty("TIPS14"));
 
                 AtomicBoolean isContinue = new AtomicBoolean(false);
                 StringBuilder answer = new StringBuilder();
@@ -132,8 +141,8 @@ public class Main
         }
         catch (Exception e)
         {
-            System.out.format("\33[31;6m运行出错!!\33[0m%n");
-            System.out.format("\33[31;6m错误信息:" + e.getMessage() + "\33[0m%n");
+            printErr(props.getProperty("ERR4"));
+            printErr(props.getProperty("ERR5") + e.getMessage());
 
         }
 
@@ -175,7 +184,7 @@ public class Main
                     }
                     catch (NumberFormatException e)
                     {
-                        System.out.format("\33[31;6m代理端口号不是正确的端口!\33[0m%n");
+                        printErr(props.getProperty("ERR6"));
                         System.exit(1);
                     }
                 }
@@ -185,14 +194,30 @@ public class Main
                 }
                 if (bo.getProxyPort() < 0 || bo.getProxyPort() > 65535)
                 {
-                    System.out.format("\33[31;6m代理端口号不是正确的端口!\33[0m%n");
+                    printErr(props.getProperty("ERR6"));
                     System.exit(1);
+                }
+            }
+            else if ("-lang".equals(arr[0]))
+            {
+                if (LANG_EN.equals(arr[1]))
+                {
+                    bo.setLang(LANG_EN);
+                }
+                else
+                {
+                    bo.setLang(LANG_ZH_CN);
+
                 }
             }
         }
         if (bo.getContext() == null)
         {
             bo.setContext(false);
+        }
+        if (bo.getLang() == null)
+        {
+            bo.setLang(LANG_ZH_CN);
         }
         return bo;
     }
@@ -219,4 +244,21 @@ public class Main
         return lines.stream().collect(Collectors.joining("\n"));
     }
 
+
+    private static void printTitle(String msg)
+    {
+        System.out.format("\33[33;1m%s\33[0m%n", msg);
+    }
+
+
+    private static void print(String msg)
+    {
+        System.out.format("\33[32;6m%s\33[0m%n", msg);
+    }
+
+
+    private static void printErr(String msg)
+    {
+        System.out.format("\33[31;6m%s\33[0m%n", msg);
+    }
 }

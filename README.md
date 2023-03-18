@@ -2,6 +2,9 @@
 <p align=center>
   <img src="logo.png" alt="logo.png" width="200" />
 </p>
+
+[English](README_en.md)
+
 <p align=center>
    基于ChatGPT 3.5 + Java 8 一个命令行客户端工具。觉得不错请右上角Star。
 </p>
@@ -13,7 +16,7 @@
 
 </p>
 
-**Chatgpt微信小程序端已经上线了!小程序搜索【*微AI聊天*】，认准这个logo图标就可以了，欢迎体验~**
+**Chatgpt微信小程序端已经上线了!小程序搜索【<span style="color:#04BE02">*微 AI 聊天*</span>】，认准这个logo图标就可以了，欢迎体验~**
 ## 项目介绍
 本项目基于ChatGPT开发的一个命令行客户端，支持连续对话！
 
@@ -33,27 +36,30 @@
 - chatGpt命令行客户端:https://github.com/gulihua10010/ChatGpt
    
 ## 快速开始
+需要配置好 Java(jdk1.8+)环境
 ```bash
-java -jar chatGpt.jar -apiKey=sk-*************************************** -context=false -proxy=127.0.0.1:7890
+java -jar chatGpt.jar -apiKey=sk-*************************************** -context=false -proxy=127.0.0.1:7890 -lang=zh_cn
 ```
 ### 用法说明
 ```
 api-----------你的 API Key(必填)
 context-------是否记住上下文(可选,默认否),如果为true,需要把之前所有的对话都作为请求体进行发送,这样token消耗就会很快!
 proxy---------代理(可选)
+lang----------语言(可选,默认中文)
 输入[exit]退出程序
 ```
 ### 示例
 ```bash
-java -jar chatGpt.jar -apiKey=sk-*************************************** -context=false -proxy=127.0.0.1:7890
-ChatGPT - 一个用命令行进行AI聊天的小工具~
+java -jar chatGpt.jar -apiKey=sk-*************************************** -context=false -proxy=127.0.0.1:7890 -lang=zh_cn
+🤖ChatGPT - 一个用命令行进行AI聊天的小工具~🤖
 用法: java -jar chatGpt.jar -api=<API_KEY> -context=false -proxy=<PROXY>
 说明: api-----------你的 API Key(必填)
      context-------是否记住上下文(可选,默认否),如果为true,需要把之前所有的对话都作为请求体进行发送,这样token消耗就会很快!
      proxy---------代理(可选)
+     lang----------语言(可选,默认中文)
 Github: https://github.com/gulihua10010/ChatGpt~
 博客 'https://jianwoo.cn
-请按两次回车进行绘画请求
+请按两次回车进行会话请求
 输入exit退出会话
 
 验证中...

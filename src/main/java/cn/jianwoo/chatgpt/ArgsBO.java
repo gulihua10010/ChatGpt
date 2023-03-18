@@ -16,11 +16,13 @@ public class ArgsBO implements Serializable
 {
     /** API Key */
     private String apiKey;
-    /** 是否记住上下文 */
+    /** 是否记住上下文,默认 false */
     private Boolean context;
     /** 代理主机 */
     private String proxyHsot;
-    /** 代理端口 */
+    /** 代理端口,默认 7890 */
     private Integer proxyPort;
+    /** 语言,默认中文 */
+    private String lang;
 
 }
