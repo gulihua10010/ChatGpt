@@ -16,6 +16,8 @@
 **Chatgpt微信小程序端已经上线了!小程序搜索【$${\color{#04BE02}微AI聊天}$$】，认准这个logo图标就可以了，欢迎体验~**
 ## 项目介绍
 $${\color{red}Welcome \space \color{lightblue}To \space \color{orange}Stackoverflow}$$
+$${\color{#04BE02}微AI聊天}$$
+$${\color{green}微AI聊天}$$
 本项目基于ChatGPT开发的一个命令行客户端，支持连续对话！
 
 ## 项目地址
