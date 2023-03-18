@@ -35,6 +35,9 @@
 - chatGpt API SDK:https://github.com/gulihua10010/chatGptApiSdk
 - chatGpt命令行客户端:https://github.com/gulihua10010/ChatGpt
    
+## 下载
+[releases](https://github.com/gulihua10010/ChatGpt/releases/tag/untagged-d93e8288af4a609ab9c3)
+
 ## 快速开始
 需要配置好 Java(jdk1.8+)环境
 ```bash

@@ -25,8 +25,8 @@ This project based on ChatGPT development of a command line client, support cont
 
 Currently, the project is hosted on **Gitee** and **Github** * platforms. Welcome to **Star** and **Fork** * support ~
 
-- Gitee地址：https://gitee.com/gulihua/ChatGpt
-- Github地址：https://github.com/gulihua10010/ChatGpt
+- Gitee：https://gitee.com/gulihua/ChatGpt
+- Github：https://github.com/gulihua10010/ChatGpt
 
 
 ## Other ChatGPt-related projects, if you think you can support them
@@ -35,13 +35,16 @@ Currently, the project is hosted on **Gitee** and **Github** * platforms. Welcom
 - openAi Auth SDK:https://github.com/gulihua10010/openAiAuth
 - chatGpt API SDK:https://github.com/gulihua10010/chatGptApiSdk
 - chatGpt command line client:https://github.com/gulihua10010/ChatGpt
-   
+
+## Download
+[releases](https://github.com/gulihua10010/ChatGpt/releases/tag/untagged-d93e8288af4a609ab9c3)
+
 ## Fast start
 The Java(jdk1.8+) environment needs to be configured
 ```bash
 java -jar chatGpt.jar -apiKey=sk-*************************************** -context=false -proxy=127.0.0.1:7890 -lang=zh_cn
 ```
-### 用法说明
+### Usage
 ```
 api-----------Your API Key(required)
 context-------Whether to remember the context (optional, default false), if true, you need to send all previous conversations as the body of the request, so the token consumption is fast!
